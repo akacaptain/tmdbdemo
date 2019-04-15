@@ -1,0 +1,20 @@
+PODS:
+  - CBFlashyTabBarController (0.8.0)
+  - Kingfisher (5.3.1)
+
+DEPENDENCIES:
+  - CBFlashyTabBarController
+  - Kingfisher (~> 5.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - CBFlashyTabBarController
+    - Kingfisher
+
+SPEC CHECKSUMS:
+  CBFlashyTabBarController: 4a5373a5b586646f8c4c22b28a6d33d01328538e
+  Kingfisher: d9e7e0b209b59b8f9873aa2f37654e81a7beea51
+
+PODFILE CHECKSUM: d5f93c1e1ed41cb03544a8be79b164367fa572bb
+
+COCOAPODS: 1.5.3
