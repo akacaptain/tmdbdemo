@@ -36,6 +36,10 @@ class MovieTableCell: UITableViewCell {
             poster_pathLabel.text = image_path
             posterImage.kf.setImage(with: baseImageURL?.appendingPathComponent(image_path))
         }
+        else
+        {
+            posterImage.image = UIImage(named: "no_poster")
+        }
     }
     
     override func prepareForReuse() {
