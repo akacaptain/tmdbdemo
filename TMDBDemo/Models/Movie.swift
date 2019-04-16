@@ -11,7 +11,7 @@ import Foundation
 struct Movie: Decodable {
     let title: String
     let overview: String
-    let poster_path: String
+    var poster_path: String?
     
     enum CodingKeys: String, CodingKey {
         case title
@@ -23,7 +23,7 @@ struct Movie: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         title = try container.decode(String.self, forKey: .title)
         overview = try container.decode(String.self, forKey: .overview)
-        poster_path = try container.decode(String.self, forKey: .poster_path)
+        poster_path = try? container.decode(String.self, forKey: .poster_path)
     }
     
 }

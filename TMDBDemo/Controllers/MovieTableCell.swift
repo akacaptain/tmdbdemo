@@ -12,28 +12,37 @@ import Kingfisher
 
 class MovieTableCell: UITableViewCell {
     
-    let baseImageURL = URL(string: "https://image.tmdb.org/t/p/w92/")
+
+    @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var poster_pathLabel: UILabel!
+    @IBOutlet weak var posterImage: UIImageView!
+    @IBOutlet weak var overviewLabel: UILabel!
+    let baseImageURL = URL(string: "https://image.tmdb.org/t/p/w154/")
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
-        self.textLabel?.numberOfLines = 0
-        self.textLabel?.lineBreakMode = .byWordWrapping
-        self.detailTextLabel?.numberOfLines = 0
-        self.detailTextLabel?.lineBreakMode = .byWordWrapping
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+        self.mainView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
     
     func configure(_ movie: Movie)
     {
-        textLabel?.text = "\(movie.title) \n(\(movie.poster_path))"
-        detailTextLabel?.text = movie.overview
-        //imageView?.kf.setImage(with: baseImageURL?.appendingPathComponent(movie.poster_path))
-        //imageView?.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        //imageView?.sd_setImage(with: baseImageURL?.appendingPathComponent(movie.poster_path))
-        
+        overviewLabel.text = movie.overview
+        titleLabel.text = movie.title
+        if let image_path = movie.poster_path
+        {
+            posterImage.kf.indicatorType = .activity
+            poster_pathLabel.text = image_path
+            posterImage.kf.setImage(with: baseImageURL?.appendingPathComponent(image_path))
+        }
+    }
+    
+    override func prepareForReuse() {
+        posterImage.image = nil
+        titleLabel.text = nil
+        poster_pathLabel.text = nil
+        overviewLabel.text = nil
     }
     
 }

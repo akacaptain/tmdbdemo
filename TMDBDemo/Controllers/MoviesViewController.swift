@@ -50,14 +50,16 @@ class MoviesViewController: UIViewController, MoviesViewModelDelegate {
         view.addSubview(tableView)
         
         indicatorView = UIActivityIndicatorView(style: .gray)
+        indicatorView.frame = view.frame
         view.addSubview(indicatorView)
         view.bringSubviewToFront(indicatorView)
         indicatorView.startAnimating()
         //tableView.isHidden = true
         tableView.dataSource = self
         tableView.prefetchDataSource = self
-        tableView.register(MovieTableCell.self, forCellReuseIdentifier: CellIdentifiers.id)
-        
+        let nib = UINib.init(nibName: "MovieViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: CellIdentifiers.id)
+  
         // initialize the model and perform the first retrieval of movie data
         model = MoviesViewModel(query_type: query_type, delegate: self)
         model.getMovies()
